@@ -1,9 +1,8 @@
 name: Build and Publish Artifact
 
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch:
+      
 
 jobs:
   build-and-publish:
@@ -19,8 +18,6 @@ jobs:
           java-version: '17' # Adjust this to your Java version
           distribution: 'adopt' # Specify the desired Linux distribution
 
-      - name: Build and Publish
-        env:
-          CODEARTIFACT_AUTH_TOKEN: ${{ secrets.AWS_CODEARTIFACT_AUTH_TOKEN }}
+      - name: Build
         run: |
-          ./gradlew clean build publish
+          ./gradlew clean build
